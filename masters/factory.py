@@ -21,10 +21,7 @@ def CreateSlaves(cfg, slaves):
 # Version of os.path given an arbitrary OS.
 class PathBuilder(object):
     def __init__(self, os):
-        if os == 'windows':
-            self.sep_ = '\\'
-        else:
-            self.sep_ = '/'
+        self.sep_ = '\\' if os == 'windows' else '/'
 
     def join(self, *parts):
         return self.sep_.join(parts)

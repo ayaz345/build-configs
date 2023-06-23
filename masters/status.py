@@ -73,11 +73,15 @@ def IRCStatus(cfg):
     channel = irc_conf['channel']
     nickname = irc_conf['nickname']
 
-    irc = words.IRC(network, nickname, channels = [{'channel': channel}], notify_events = {
-        'success': 1,
-        'failure': 1,
-        'exception': 1,
-        'successToFailure': 1,
-        'failureToSuccess': 1
-    })
-    return irc
+    return words.IRC(
+        network,
+        nickname,
+        channels=[{'channel': channel}],
+        notify_events={
+            'success': 1,
+            'failure': 1,
+            'exception': 1,
+            'successToFailure': 1,
+            'failureToSuccess': 1,
+        },
+    )

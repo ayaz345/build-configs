@@ -8,14 +8,11 @@ import packaging.version
 Version1_11 = packaging.version.parse('1.11')
 
 def BuildersForVersion(version):
-    builders = [
-        'windows-{}'.format(version),
-        'mac-{}'.format(version),
-    ]
+    builders = [f'windows-{version}', f'mac-{version}']
     if version >= Version1_11:
-        builders += ['debian9-{}'.format(version)]
+        builders += [f'debian9-{version}']
     else:
-        builders += ['debian8-{}'.format(version)]
+        builders += [f'debian8-{version}']
     return builders
 
 class SMScheduler(SingleBranchScheduler):

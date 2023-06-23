@@ -102,18 +102,13 @@ class LDAPAuth(auth.AuthBase):
                                             sizelimit=1)
 
         if not result or len(result) != 1:
-            self.err = "user not a member of %s" % self.groupdn
+            self.err = f"user not a member of {self.groupdn}"
             return False                         
 
         grp_list = result[0][1]['memberOf']
-        ingroup = False
-        for dn in grp_list:
-            if dn == self.groupdn:
-                ingroup = True
-                break
-
+        ingroup = any(dn == self.groupdn for dn in grp_list)
         if not ingroup:
-            self.err = "user not a member of %s" % self.groupdn
+            self.err = f"user not a member of {self.groupdn}"
             return False
 
         # Connection used to authenticate users with the LDAP DB.

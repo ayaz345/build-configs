@@ -5,12 +5,7 @@ from buildbot.schedulers import triggerable
 from buildbot.changes import filter
 
 def BuildersForVersion(version):
-    builders = [
-        'linux-' + version,
-        'win32-' + version,
-        'mac-' + version,
-    ]
-    return builders
+    return [f'linux-{version}', f'win32-{version}', f'mac-{version}']
 
 class Scheduler(SingleBranchScheduler):
     def __init__(self, branch, builders):
